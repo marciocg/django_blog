@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% for postagem in object_list %}
+<div class="postagem-cadastro">
+    <h3><a href="{% url 'postagem_detalhe' postagem.pk %}">{{ postagem.titulo }}</a></h3>
+    <h5> por {{postagem.autor}}</h5>
+    <p>{{ postagem.corpo }}</p>
+</div>
+{% endfor %}
+{% endblock content %}
