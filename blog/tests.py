@@ -12,7 +12,7 @@ class BlogTests(TestCase):
                 email = 'test@email.com',
                 password = 'secret',
         )
-        
+
         self.postagem= Postagem.objects.create(
                 titulo = 'Um título comum',
                 corpo = 'Um texto legal',
@@ -42,3 +42,24 @@ class BlogTests(TestCase):
         self.assertEqual(no_response.status_code, 404)
         self.assertContains(response, 'Um título comum')
         self.assertTemplateUsed(response, 'postagem_detalhe.html')
+
+    def test_post_create_view(self):
+        response = self.client.post(reverse('postagem_novo'), {
+            'titulo': 'Novo título',
+            'corpo': 'Novo texto do corpo',
+            'autor': self.user,
+        })
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'Novo título')
+        self.assertContains(response, 'Novo texto do corpo')
+
+    def test_post_update_view(self):
+        response = self.client.post(reverse('postagem_altera', args='1'), {
+            'titulo': 'Título alterado',
+            'corpo': 'Corpo alterado',
+    })
+        self.assertEqual(response.status_code, 302)
+
+    def test_post_delete_view(self):
+        response = self.client.get(reverse('postagem_apaga', args='1'))
+        self.assertEqual(response.status_code, 200)

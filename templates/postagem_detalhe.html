@@ -6,4 +6,6 @@
     <p>{{ object.corpo }}</p>
 </div>
 
+<a href="{% url 'postagem_altera' postagem.pk %}">+ Alterar Postagem</a>
+<a href="{% url 'postagem_apaga' postagem.pk %}">+ Apagar Postagem</a>
 {% endblock content %}

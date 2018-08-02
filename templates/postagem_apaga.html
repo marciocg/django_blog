@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Apaga Postagem</h1>
+<form action="" method="post">{% csrf_token %}
+    <p>Você tem certeza que deseja apagar a postagem "{{ postagem.titulo }}", escrita por <b>{{ postagem.autor }}</b>?</p>
+    <input type="submit" value="Confirmo que quero apagar a postagem." />
+</form>
+{% endblock content %}

@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 class Postagem(models.Model):
     titulo = models.CharField(max_length=200)
@@ -11,4 +12,7 @@ class Postagem(models.Model):
 
     def __str__(self):
         return self.titulo
-# Create your models here.
+
+
+    def get_absolute_url(self):
+        return reverse('postagem_detalhe', args=[str(self.id)])
