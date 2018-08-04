@@ -8,5 +8,8 @@ python_version = "3.4"
 
 [packages]
 django = "*"
+gunicorn = "*"
+whitenoise = "*"
+heroku = "*"
 
 [dev-packages]
